@@ -98,7 +98,7 @@ class OCFolderBackupRepositoryTest {
     }
 
     @Test
-    fun `saveFolderBackupConfiguration saves a folder back-up configuration correctly`() {
+    fun `saveFolderBackupConfiguration saves a folder backup configuration correctly`() {
         ocFolderBackupRepository.saveFolderBackupConfiguration(OC_BACKUP)
 
         verify(exactly = 1) {
@@ -107,7 +107,7 @@ class OCFolderBackupRepositoryTest {
     }
 
     @Test
-    fun `resetFolderBackupConfigurationByName resets a folder back-up configuration correctly by the name`() {
+    fun `resetFolderBackupConfigurationByName resets a folder backup configuration correctly by the name`() {
         ocFolderBackupRepository.resetFolderBackupConfigurationByName(pictureUploadsName)
 
         verify(exactly = 1) {
