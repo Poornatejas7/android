@@ -150,7 +150,7 @@ class PreviewImageActivity : FileActivity(),
                 is UIResult.Success -> {
 
                     // Refresh the spaces and update the quota
-                    val spacesListViewModel: SpacesListViewModel by viewModel { parametersOf(account.name, false) }
+                    val spacesListViewModel: SpacesListViewModel by viewModel { parametersOf(account.name, false, false) }
                     spacesListViewModel.refreshSpacesFromServer()
 
                     dismissLoadingDialog()

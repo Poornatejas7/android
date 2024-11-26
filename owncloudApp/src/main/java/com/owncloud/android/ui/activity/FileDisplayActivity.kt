@@ -381,7 +381,7 @@ class FileDisplayActivity : FileActivity(),
             }
         }
 
-        spacesListViewModel = getViewModel { parametersOf(account.name, false) }
+        spacesListViewModel = getViewModel { parametersOf(account.name, false, false) }
         spacesListViewModel.refreshSpacesFromServer()
     }
 

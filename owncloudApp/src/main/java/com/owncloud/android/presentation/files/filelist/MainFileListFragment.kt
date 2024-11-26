@@ -150,6 +150,7 @@ class MainFileListFragment : Fragment(),
         parametersOf(
             requireArguments().getString(ARG_ACCOUNT_NAME),
             false,
+            false,
         )
     }
 

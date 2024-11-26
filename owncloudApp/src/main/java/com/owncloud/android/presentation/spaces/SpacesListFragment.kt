@@ -54,6 +54,7 @@ class SpacesListFragment : SpacesListAdapter.SpacesListAdapterListener, Fragment
         parametersOf(
             requireArguments().getString(BUNDLE_ACCOUNT_NAME),
             requireArguments().getBoolean(BUNDLE_SHOW_PERSONAL_SPACE),
+            true,
         )
     }
 
@@ -78,7 +79,7 @@ class SpacesListFragment : SpacesListAdapter.SpacesListAdapterListener, Fragment
 
         val spacesListLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerSpacesList.layoutManager = spacesListLayoutManager
-        spacesListAdapter = SpacesListAdapter(this)
+        spacesListAdapter = SpacesListAdapter(this, true)
         binding.recyclerSpacesList.adapter = spacesListAdapter
 
         binding.swipeRefreshSpacesList.setOnRefreshListener {

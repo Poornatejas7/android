@@ -39,6 +39,7 @@ import com.owncloud.android.utils.PreferenceUtils
 
 class SpacesListAdapter(
     private val listener: SpacesListAdapterListener,
+    private val isMultiPersonal: Boolean,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val spacesList = mutableListOf<OCSpace>()
@@ -59,7 +60,7 @@ class SpacesListAdapter(
             }
             spacesListItemCard.setAccessibilityRole(className = Button::class.java)
 
-            if (space.isPersonal) {
+            if (space.isPersonal && !isMultiPersonal) {
                 spacesListItemName.text = holder.itemView.context.getString(R.string.bottom_nav_personal)
                 spacesListItemImage.apply {
                     dispose()
