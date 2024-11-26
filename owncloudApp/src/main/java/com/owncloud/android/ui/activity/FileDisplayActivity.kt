@@ -834,7 +834,7 @@ class FileDisplayActivity : FileActivity(),
 
             if (serverVersion != null && !serverVersion.isServerVersionSupported) {
                 Timber.d("Server version not supported")
-                showRequestAccountChangeNotice(getString(R.string.server_not_supported), true)
+                //showRequestAccountChangeNotice(getString(R.string.server_not_supported), true)
             }
 
             val synchResult = intent.getSerializableExtra(FileSyncAdapter.EXTRA_RESULT) as? RemoteOperationResult<*>
@@ -1499,7 +1499,7 @@ class FileDisplayActivity : FileActivity(),
                 val ownCloudVersion = OwnCloudVersion(capabilitiesVersionString)
                 if (!ownCloudVersion.isServerVersionSupported) {
                     Timber.d("Server version not supported")
-                    showRequestAccountChangeNotice(getString(R.string.server_not_supported), true)
+                    //showRequestAccountChangeNotice(getString(R.string.server_not_supported), true)
                 }
             }
         }
