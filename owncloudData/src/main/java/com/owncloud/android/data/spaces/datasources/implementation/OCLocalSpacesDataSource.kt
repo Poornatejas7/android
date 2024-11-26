@@ -4,7 +4,7 @@
  * @author Abel García de Prada
  * @author Juan Carlos Garrote Gascón
  *
- * Copyright (C) 2023 ownCloud GmbH.
+ * Copyright (C) 2024 ownCloud GmbH.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2,
@@ -181,7 +181,7 @@ class OCLocalSpacesDataSource(
         fun OCSpace.toEntity() =
             SpacesEntity(
                 accountName = accountName,
-                driveAlias = driveAlias,
+                driveAlias = driveAlias ?: "",
                 driveType = driveType,
                 id = id,
                 lastModifiedDateTime = lastModifiedDateTime,
@@ -193,7 +193,7 @@ class OCLocalSpacesDataSource(
                 root = root.let { rootModel ->
                     SpaceRootEntity(eTag = rootModel.eTag, id = rootModel.id, webDavUrl = rootModel.webDavUrl, deleteState = rootModel.deleted?.state)
                 },
-                webUrl = webUrl,
+                webUrl = webUrl ?: "",
                 description = description,
             )
 
@@ -205,7 +205,7 @@ class OCLocalSpacesDataSource(
                 eTag = eTag,
                 fileMimeType = file.mimeType,
                 id = id,
-                lastModifiedDateTime = lastModifiedDateTime,
+                lastModifiedDateTime = lastModifiedDateTime ?: "",
                 name = name,
                 size = size,
                 specialFolderName = specialFolder.name,
