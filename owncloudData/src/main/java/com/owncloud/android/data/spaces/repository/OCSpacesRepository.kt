@@ -39,8 +39,11 @@ class OCSpacesRepository(
         remoteSpacesDataSource.refreshSpacesForAccount(accountName).also { listOfSpaces ->
             localSpacesDataSource.saveSpacesForAccount(listOfSpaces)
             val personalSpace = listOfSpaces.find { it.isPersonal }
+            val isMultiPersonal = listOfSpaces.count { it.isPersonal } > 1
             personalSpace?.let {
-                val userQuota = if (it.quota?.total!!.toInt() == 0) {
+                val userQuota = if (isMultiPersonal) {
+                    UserQuota(accountName, 0, 0, 0, UserQuotaState.NORMAL)
+                } else if (it.quota?.total!!.toInt() == 0) {
                     UserQuota(accountName, -3, it.quota?.used!!, it.quota?.total!!, UserQuotaState.fromValue(it.quota?.state!!))
                 } else {
                     UserQuota(accountName, it.quota?.remaining!!, it.quota?.used!!, it.quota?.total!!, UserQuotaState.fromValue(it.quota?.state!!))
