@@ -259,6 +259,7 @@ class MainFileListFragment : Fragment(),
         binding.recyclerViewMainFileList.adapter = fileListAdapter
 
         // Set Swipe to refresh and its listener
+        binding.swipeRefreshMainFileList.isEnabled = mainFileListViewModel.fileListOption.value != FileListOption.AV_OFFLINE
         binding.swipeRefreshMainFileList.setOnRefreshListener {
             fileOperationsViewModel.performOperation(
                 FileOperation.RefreshFolderOperation(
@@ -316,9 +317,9 @@ class MainFileListFragment : Fragment(),
         // Observe the current folder displayed
         collectLatestLifecycleFlow(mainFileListViewModel.currentFolderDisplayed) { currentFolderDisplayed: OCFile ->
             fileActions?.onCurrentFolderUpdated(currentFolderDisplayed, mainFileListViewModel.getSpace())
-            val fileListOption = mainFileListViewModel.fileListOption.value
+            val fileListOption = (requireActivity() as FileDisplayActivity).fileListOption
             val refreshFolderNeeded = fileListOption.isAllFiles() ||
-                    (!fileListOption.isAllFiles() && currentFolderDisplayed.remotePath != ROOT_PATH)
+                    (!fileListOption.isAllFiles() && currentFolderDisplayed.remotePath != ROOT_PATH && !fileListOption.isAvailableOffline())
             if (refreshFolderNeeded) {
                 fileOperationsViewModel.performOperation(
                     FileOperation.RefreshFolderOperation(
@@ -813,6 +814,7 @@ class MainFileListFragment : Fragment(),
     fun updateFileListOption(newFileListOption: FileListOption, file: OCFile) {
         mainFileListViewModel.updateFolderToDisplay(file)
         mainFileListViewModel.updateFileListOption(newFileListOption)
+        binding.swipeRefreshMainFileList.isEnabled = newFileListOption != FileListOption.AV_OFFLINE
         showOrHideFab(newFileListOption, file)
     }
 
