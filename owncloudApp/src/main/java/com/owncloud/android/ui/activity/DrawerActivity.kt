@@ -327,7 +327,7 @@ abstract class DrawerActivity : ToolbarActivity() {
 
                             userQuota.available == 0L -> { // Exceeded storage. The value is over 100%.
                                 getAccountQuotaBar()?.apply {
-                                    isVisible = true
+                                    isVisible = false
                                     progress = 100
                                     progressTintList = ColorStateList.valueOf(resources.getColor(R.color.quota_exceeded))
                                 }
@@ -346,7 +346,7 @@ abstract class DrawerActivity : ToolbarActivity() {
                                         text = getString(R.string.drawer_exceeded_quota)
                                     }
                                 } else { // oC10
-                                    getAccountQuotaText()?.text = getString(R.string.drawer_exceeded_quota)
+                                    getAccountQuotaText()?.text = getString(R.string.drawer_unavailable_used_storage)
                                     getAccountQuotaStatusText()?.visibility = View.GONE
                                 }
                             }

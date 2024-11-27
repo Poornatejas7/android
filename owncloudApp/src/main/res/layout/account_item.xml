@@ -146,7 +146,8 @@
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/item_file_grid_margin"
-            android:layout_marginTop="@dimen/standard_quarter_margin" />
+            android:layout_marginTop="@dimen/standard_quarter_margin"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/manage_accounts_quota_text"

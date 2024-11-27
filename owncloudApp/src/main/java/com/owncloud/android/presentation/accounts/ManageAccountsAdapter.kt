@@ -173,7 +173,7 @@ class ManageAccountsAdapter(
                         DisplayUtils.bytesToHumanReadable(userQuota.getTotal(), context, false)
                     )
                 } else { // oC10
-                    quotaText.text = context.getString(R.string.drawer_exceeded_quota)
+                    quotaText.text = context.getString(R.string.drawer_unavailable_used_storage)
                 }
             }
 
